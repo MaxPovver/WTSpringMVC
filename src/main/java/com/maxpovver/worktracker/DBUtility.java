@@ -4,7 +4,6 @@ import com.maxpovver.worktracker.respositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,23 +13,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class DBUtility {
 
-    public static UserRepository rep;
-    public UserRepository users() {
-        return rep;//(UserRepository)ctx.getBean("userRepository");
+    private static UserRepository urep;
+    public static UserRepository users() {
+        return urep;//(UserRepository)ctx.getBean("userRepository");
     }
 
     @Autowired
     private void setUserRepository(UserRepository r) {
-        rep = r;
-    }
-    public static LogRepository logs() {
-        return (LogRepository)ctx.getBean("logRepository");
+        urep = r;
     }
 
+    private static JobRepository jrep;
     public static JobRepository jobs() {
-        return (JobRepository)ctx.getBean("jobRepository");
+        return jrep;//(UserRepository)ctx.getBean("userRepository");
     }
 
-    public static ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
+    @Autowired
+    private void setJobRepository(JobRepository r) {
+        jrep = r;
+    }
 
+    private static LogRepository lrep;
+    public static LogRepository logs() {
+        return lrep;//(UserRepository)ctx.getBean("userRepository");
+    }
+
+    @Autowired
+    private void setLogRepository(LogRepository r) {
+        lrep = r;
+    }
 }
