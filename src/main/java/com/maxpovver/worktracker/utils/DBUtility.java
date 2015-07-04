@@ -1,4 +1,4 @@
-package com.maxpovver.worktracker;
+package com.maxpovver.worktracker.utils;
 
 import com.maxpovver.worktracker.respositories.*;
 import org.springframework.beans.factory.annotation.Autowired;

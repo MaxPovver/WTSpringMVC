@@ -1,10 +1,11 @@
 package com.maxpovver.controllers;
 
-import static com.maxpovver.worktracker.DBUtility.*;
+import static com.maxpovver.worktracker.utils.DBUtility.*;
 
-import com.maxpovver.worktracker.DBUtility;
+import com.maxpovver.worktracker.utils.DBUtility;
 import com.maxpovver.worktracker.entities.*;
 import com.maxpovver.worktracker.respositories.UserRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,9 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by admin on 04.07.15.
  */
+
 @RestController
+@PreAuthorize("hasAuthority('ROLE_DOMAIN_USER')")
 public class UsersController {
 
     private static final String template = "Hello, %s!";

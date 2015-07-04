@@ -1,11 +1,6 @@
 package com.maxpovver.worktracker;
 
-import com.maxpovver.worktracker.entities.User;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-
-import static com.maxpovver.worktracker.DBUtility.*;
 
 /**
  * Created by admin on 03.07.15.

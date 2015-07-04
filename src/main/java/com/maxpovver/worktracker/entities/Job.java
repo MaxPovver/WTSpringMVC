@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -24,7 +25,7 @@ public class Job {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
     @OneToMany(cascade=CascadeType.ALL, mappedBy="job")
-    private Collection<Log> logs;
+    private List<Log> logs;
 
     public long getId() {
         return id;
@@ -66,11 +67,11 @@ public class Job {
         this.user = user;
     }
 
-    public Collection<Log> getLogs() {
+    public List<Log> getLogs() {
         return logs;
     }
 
-    public void setLogs(Collection<Log> logs) {
+    public void setLogs(List<Log> logs) {
         this.logs = logs;
     }
 

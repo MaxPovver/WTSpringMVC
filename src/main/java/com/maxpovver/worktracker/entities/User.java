@@ -1,14 +1,11 @@
 package com.maxpovver.worktracker.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.maxpovver.worktracker.DBUtility;
-import org.hibernate.Hibernate;
-import org.hibernate.LazyInitializationException;
-import org.hibernate.collection.internal.PersistentBag;
 import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -25,7 +22,14 @@ public class User {
     @JsonIgnore
     private String password;
     @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-    private Collection<Job> jobs;
+    private List<Job> jobs;
+
+    @ManyToMany
+    @Lazy(value = false)
+    @JoinTable(name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
     public long getId() {
         return id;
@@ -51,12 +55,20 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Job> getJobs() {
+    public List<Job> getJobs() {
         return jobs;
     }
 
-    public void setJobs(Collection<Job> jobs) {
+    public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public User(String username, String password) {
