@@ -1,4 +1,4 @@
-package com;
+package com.maxpovver.controllers;
 import com.maxpovver.Application;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,8 +66,7 @@ public class RegisterControllerTests {
                 .param("password_confirm",""))
                 .andExpect(view().name("/register"));
     }
-    @Test//(expected = AuthenticationCredentialsNotFoundException.class)
-    //@PreAuthorize("authenticated")
+    @Test
     @Transactional
     @Rollback
     @WithMockUser(username = "testuser", password = "empty", roles={"ADMIN","USER"})
