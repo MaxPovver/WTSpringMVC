@@ -86,7 +86,7 @@ public class RegisterController {
             model.addAttribute("error","db failed to add your user");
             return "/register";
         }
-        return "/login";
+        return "redirect:/login";
     }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showForm() {

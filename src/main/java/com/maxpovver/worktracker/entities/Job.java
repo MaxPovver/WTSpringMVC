@@ -1,8 +1,11 @@
 package com.maxpovver.worktracker.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.maxpovver.worktracker.utils.WorkdaysService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Collection;
@@ -116,9 +119,20 @@ public class Job {
     @JsonIgnore
     public double getHours(int year, int month)
     {
-        Calendar c = Calendar.getInstance();
         return getLogs().stream()
-                .filter(l->l.getStartTime().getMonth()==month && l.getStartTime().getYear() == year)
+                .filter(l->l.getStartTime().getMonth() == month
+                        && l.getStartTime().getYear() == year)
                 .mapToLong(Log::getDiff).sum() / 1000.0 / 3600.0;
+    }
+
+    /**
+     * Counts how many you've earned for current month.
+     * Notice that counting speed differs because of lazy load.
+     * @return how many you've earned for current month
+     */
+    @JsonIgnore
+    public Double getCurrentSalary()
+    {   //TODO: fetch workhours from db!!!!
+        return getSalary() * (getHours()/ (WorkdaysService.get().getWorkdays() * 8.0));
     }
 }

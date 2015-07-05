@@ -1,9 +1,11 @@
 package com.maxpovver.worktracker.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.cache.spi.TimestampsRegion;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
  * Created by admin on 03.07.15.
@@ -62,6 +64,26 @@ public class Log {
     }
 
     protected Log() {
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+        {
+            return true;
+        }
+        else if (!(obj instanceof Log))
+        {
+            return false;
+        }
+        return startTime.equals(((Log) obj).startTime)
+                && endTime.equals(((Log) obj).endTime)
+                && job == ((Log) obj).job;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startTime, endTime, job);
     }
 
     @Override
