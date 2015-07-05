@@ -2,20 +2,16 @@ package com.maxpovver.controllers;
 
 import com.maxpovver.worktracker.entities.Role;
 import com.maxpovver.worktracker.entities.User;
-import com.maxpovver.worktracker.respositories.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.maxpovver.worktracker.utils.DBUtility.users;
-import com.maxpovver.worktracker.entities.User;
-import org.springframework.web.servlet.View;
 
 /**
  * Created by admin on 05.07.15.
@@ -74,7 +70,7 @@ public class RegisterController {
         }
         if (model.containsAttribute("error"))
         {
-            return "/register";
+            return "redirect:/error";
         }
         User user = new User(trying.username, trying.password);
         List<Role> roles = new ArrayList<>();
@@ -84,7 +80,7 @@ public class RegisterController {
         if (user == null)
         {
             model.addAttribute("error","db failed to add your user");
-            return "/register";
+            return "redirect:/error";
         }
         return "redirect:/login";
     }

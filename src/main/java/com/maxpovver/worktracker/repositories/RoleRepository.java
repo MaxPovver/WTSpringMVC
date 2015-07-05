@@ -1,4 +1,4 @@
-package com.maxpovver.worktracker.respositories;
+package com.maxpovver.worktracker.repositories;
 
 import com.maxpovver.worktracker.entities.Role;
 import org.springframework.data.repository.CrudRepository;

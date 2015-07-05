@@ -2,9 +2,8 @@ package com.maxpovver.controllers;
 
 import static com.maxpovver.worktracker.utils.DBUtility.*;
 
-import com.maxpovver.worktracker.utils.DBUtility;
 import com.maxpovver.worktracker.entities.*;
-import com.maxpovver.worktracker.respositories.UserRepository;
+import com.maxpovver.worktracker.repositories.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

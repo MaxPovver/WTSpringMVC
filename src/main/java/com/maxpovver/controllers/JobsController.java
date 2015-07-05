@@ -1,6 +1,5 @@
 package com.maxpovver.controllers;
 
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.maxpovver.worktracker.entities.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,14 +7,13 @@ import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.maxpovver.worktracker.respositories.*;
+import com.maxpovver.worktracker.repositories.*;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static com.maxpovver.worktracker.utils.DBUtility.*;
@@ -96,6 +94,7 @@ public class JobsController {
         {
             return null;
         }
+        //TODO: should be processed by service, not from local code!
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         Timestamp start=null,end=null;
         try {

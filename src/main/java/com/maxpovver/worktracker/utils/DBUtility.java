@@ -1,9 +1,7 @@
 package com.maxpovver.worktracker.utils;
 
-import com.maxpovver.worktracker.respositories.*;
+import com.maxpovver.worktracker.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**

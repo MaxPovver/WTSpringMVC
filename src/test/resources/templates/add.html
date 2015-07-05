@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add log</title>
+</head>
+<body>
+
+<form th:action="${job.id}" method="post" onsubmit="fixit(this)">
+    <div><label>Start:<input name="startTime"/> </label></div>
+    <div><label> End <input name="endTime"/> </label></div>
+    <div><input type="submit" value="Log it"/></div>
+</form>
+</body>
+<script>
+    function fixit(f)
+    {
+        var old = f.getAttribute("action");
+        var _new = "/jobs/"+old+"/logs";
+        f.setAttribute("action",_new);
+        return true;
+    }
+</script>
+</html>

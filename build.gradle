@@ -33,6 +33,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile 'mysql:mysql-connector-java:5.1.31'
     compile 'commons-dbcp:commons-dbcp:1.4'
+    testCompile("org.springframework:spring-test:4.1.7.RELEASE")
     testCompile("junit:junit")
 }
 
