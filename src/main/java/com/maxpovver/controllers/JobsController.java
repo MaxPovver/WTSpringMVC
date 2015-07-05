@@ -141,12 +141,12 @@ public class JobsController {
         List<Job> jobs = getJobs(userDetails);
         if(jobs == null)
         {
-            return "/error";
+            return "redirect:/error";
         }
         Job forJob = jobs.stream().filter(job -> job.getId() == jobID).findFirst().orElse(null);
         if (forJob == null)
         {
-            return "/error";
+            return "redirect:/error";
         }
         m.addAttribute("job", forJob);
         return "/add";

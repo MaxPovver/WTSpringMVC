@@ -19,7 +19,7 @@ import static com.maxpovver.worktracker.utils.DBUtility.users;
 @Controller
 @PreAuthorize("isAnonymous() or hasRole('ADMIN')")
 public class RegisterController {
-    static class RegTry {
+    public static class RegTry {
         public String username;
         public String password;
         public String password_confirm;

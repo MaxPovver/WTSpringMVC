@@ -33,8 +33,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile 'mysql:mysql-connector-java:5.1.31'
     compile 'commons-dbcp:commons-dbcp:1.4'
-    testCompile("org.springframework:spring-test:4.1.7.RELEASE")
+    testCompile("org.springframework:spring-test")
     testCompile("junit:junit")
+    testCompile 'org.springframework.security:spring-security-test:4.0.1.RELEASE'
 }
 
 task wrapper(type: Wrapper) {
