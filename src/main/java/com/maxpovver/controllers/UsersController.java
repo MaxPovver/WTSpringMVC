@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 
 @RestController
-@PreAuthorize("hasAuthority('ROLE_DOMAIN_USER')")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UsersController {
 
     private static final String template = "Hello, %s!";

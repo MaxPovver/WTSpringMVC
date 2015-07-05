@@ -16,7 +16,7 @@ import static com.maxpovver.worktracker.utils.DBUtility.*;
 /**
  * Created by admin on 04.07.15.
  */
-@PreAuthorize("hasAuthority('ROLE_DOMAIN_USER') or hasAuthority('ROLE_DOMAIN_ADMIN')")
+@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
 @RestController
 public class JobsController {
 
