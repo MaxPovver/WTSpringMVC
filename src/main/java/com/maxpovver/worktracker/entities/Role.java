@@ -11,6 +11,8 @@ import java.text.CollationElementIterator;
 import java.util.Collection;
 import java.util.List;
 
+import static com.maxpovver.worktracker.utils.DBUtility.*;
+
 /**
  * Created by admin on 05.07.15.
  */
@@ -56,4 +58,8 @@ public class Role implements GrantedAuthority {
     }
 
     protected Role(){}
+
+    public static Role USER() {return roles().getRoleByRole("USER");}
+    public static Role ADMIN() { return roles().getRoleByRole("ADMIN");}
+    public static Role GUEST() { return roles().getRoleByRole("GUEST");}
 }

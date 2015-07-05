@@ -25,7 +25,7 @@ public class DBUtility {
 
     private static JobRepository jrep;
     public static JobRepository jobs() {
-        return jrep;//(UserRepository)ctx.getBean("userRepository");
+        return jrep;
     }
 
     @Autowired
@@ -35,11 +35,21 @@ public class DBUtility {
 
     private static LogRepository lrep;
     public static LogRepository logs() {
-        return lrep;//(UserRepository)ctx.getBean("userRepository");
+        return lrep;
     }
 
     @Autowired
     private void setLogRepository(LogRepository r) {
         lrep = r;
+    }
+
+    private static RoleRepository rrep;
+    public static RoleRepository roles() {
+        return rrep;
+    }
+
+    @Autowired
+    private void setRoleRepository(RoleRepository r) {
+        rrep = r;
     }
 }
