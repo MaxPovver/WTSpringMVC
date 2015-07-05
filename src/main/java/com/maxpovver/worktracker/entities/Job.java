@@ -3,7 +3,10 @@ package com.maxpovver.worktracker.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
@@ -24,6 +27,7 @@ public class Job {
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
+    @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, mappedBy="job")
     private List<Log> logs;
 
@@ -89,5 +93,32 @@ public class Job {
     public String toString() {
         return "Job["+name+", "+salary+" "+currency+", "+
                 getLogs().stream().map(Log::toString).collect(joining(","))+"]";
+    }
+
+    /**
+     * Counts hours you've worked in current month.
+     * Might work slower if it initiates lazy load.
+     * @return hours worked in current month
+     */
+    @JsonIgnore
+    public double getHours()
+    {
+        return getHours(Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.YEAR));
+    }
+    /**
+     * Counts hours you've worked in some month.
+     * Might work slower if it initiates lazy load.
+     * @param month 1-12 month we get hours for
+     * @param year year we get hours for
+     * @return hours worked in current month
+     */
+    @JsonIgnore
+    public double getHours(int year, int month)
+    {
+        Calendar c = Calendar.getInstance();
+        return getLogs().stream()
+                .filter(l->l.getStartTime().getMonth()==month && l.getStartTime().getYear() == year)
+                .mapToLong(Log::getDiff).sum() / 1000.0 / 3600.0;
     }
 }

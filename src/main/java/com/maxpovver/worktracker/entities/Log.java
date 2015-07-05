@@ -68,4 +68,15 @@ public class Log {
     public String toString() {
         return "Log[" + startTime + " : " + endTime + "]";
     }
+
+    public Double getHours()
+    {
+        return getDiff()/1000.0 //milisecs -> secs
+                /3600.0; //secs -> hours
+    }
+
+    public long getDiff()
+    {
+        return endTime.getTime() - startTime.getTime();
+    }
 }
