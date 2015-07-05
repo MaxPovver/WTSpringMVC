@@ -44,7 +44,6 @@ public class RegisterControllerTests {
     //@PreAuthorize("authenticated")
     @WithMockUser(username = "testuser", password = "empty", roles={"ADMIN","USER"})
     public void lightTests() throws Exception {
-        RegTry dummy = new RegTry();
         //no paras - so show register form
         this.mockMvc.perform(get("/register"))
                 .andExpect(view().name("/register"));

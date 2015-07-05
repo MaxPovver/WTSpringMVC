@@ -16,14 +16,14 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 
 @RestController
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class UsersController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/users/add")
-    public User addUser(@RequestParam(value="name") String name, @RequestParam(value="password") String password) {
+    public User addUser(@RequestParam(value="username") String name, @RequestParam(value="password") String password) {
        UserRepository rep = users();
         return rep.save(new User(name, password));
     }
